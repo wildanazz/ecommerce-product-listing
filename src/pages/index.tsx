@@ -5,12 +5,29 @@ import { ProductCard } from "@/components/ProductCard";
 import { Dropdown } from '@/components/Dropdown';
 
 /**
- * Home Page Component
- *
- * Renders a list of products in a responsive grid using the `ProductCard` component.
- *
- * @param {Object} props
- * @param {IProduct[]} props.products - List of products to display
+ * Home Component
+ * 
+ * Server-side rendered page with client-side interactivity to display a product list.
+ * 
+ * Features:
+ * - Displays products fetched from an API.
+ * - Filters products by category.
+ * - Sorts products by price (ascending or descending).
+ * 
+ * UI Elements:
+ * - Category filter dropdown: dynamically populated based on product categories.
+ * - Sort order dropdown: allows sorting by price.
+ * - Responsive grid layout: renders product cards showing name, category, description, and price.
+ * - Loading spinner: shown while fetching data from the API.
+ * 
+ * Data Flow:
+ * - Initial product data is loaded on the server via `getServerSideProps`.
+ * - Client-side fetch updates the displayed products based on selected filters and sort order.
+ * 
+ * @param {Object} props - Component props.
+ * @param {IProduct[]} props.products - Initial list of products fetched on the server.
+ * 
+ * @returns {JSX.Element} The rendered product listing page.
  */
 export default function Home({ products }: { products: IProduct[] }) {
   const [categoryFilter, setCategoryFilter] = useState('');
