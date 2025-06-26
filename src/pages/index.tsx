@@ -1,5 +1,8 @@
 import IProduct from "@/interfaces/IProduct";
+import { useEffect, useState } from 'react';
+
 import { ProductCard } from "@/components/ProductCard";
+import { Dropdown } from '@/components/Dropdown';
 
 /**
  * Home Page Component
@@ -10,11 +13,50 @@ import { ProductCard } from "@/components/ProductCard";
  * @param {IProduct[]} props.products - List of products to display
  */
 export default function Home({ products }: { products: IProduct[] }) {
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(products);
+  const categories = Array.from(new Set(products.map(product => product.category)))
+
+  const fetchProducts = async (category: string) => { 
+    try {
+      const params = new URLSearchParams();
+      if (category) params.set('category', category);
+
+      const res = await fetch(`/api/products?${params.toString()}`);
+        
+      if (!res.ok) throw new Error('Failed to fetch products');
+
+      const data: IProduct[] = await res.json();
+
+      setFilteredProducts(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  useEffect(() => {
+    fetchProducts(categoryFilter)
+  }, [categoryFilter, products])
+
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-6">Product List</h1>
+      <div className="flex gap-4 mb-6">
+
+        {/* Category filter dropdown */}
+        <Dropdown
+            label="Category Filter"
+            value={categoryFilter}
+            onChange={setCategoryFilter}
+            options={[
+                { value: '', label: 'All' },
+                ...categories.map(category => ({ value: category, label: category }))
+            ]}
+        />
+
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map(product => (
+        {filteredProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
