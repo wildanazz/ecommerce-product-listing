@@ -17,7 +17,7 @@ import { Dropdown } from '@/components/Dropdown';
  * UI Elements:
  * - Category filter dropdown: dynamically populated based on product categories.
  * - Sort order dropdown: allows sorting by price.
- * - Responsive grid layout: renders product cards showing name, category, description, and price.
+ * - Responsive grid layout: renders product cards showing images, name, description, and price.
  * - Loading spinner: shown while fetching data from the API.
  * 
  * Data Flow:
@@ -33,8 +33,10 @@ export default function Home({ products }: { products: IProduct[] }) {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(products);
-  const categories = Array.from(new Set(products.map(product => product.category)))
   const [loading, setLoading] = useState(false);
+
+  // Get all products categories
+  const categories = Array.from(new Set(products.map(product => product.category)))
 
   const fetchProducts = async (category: string, sort: string) => { 
     setLoading(true);
@@ -90,6 +92,7 @@ export default function Home({ products }: { products: IProduct[] }) {
         />
 
       </div>
+      
       {/* Products grid */}
       {loading ? (
           <div className="flex flex-col w-full items-center" role="status">
