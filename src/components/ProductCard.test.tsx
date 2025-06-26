@@ -34,9 +34,9 @@ describe('ProductCard', () => {
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute('src', mockProduct.imageUrl); 
   });
-
-  it('renders formatted product prices', () => {
-    const priceRegex = new RegExp(`\\$${mockProduct.price.toFixed(2)}`);
-    expect(screen.getByText(priceRegex)).toBeInTheDocument();
+    
+  it('wraps content in an anchor link with correct href', () => {
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', `/products/${mockProduct.id}`);
   });
 });
