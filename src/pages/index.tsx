@@ -14,13 +14,15 @@ import { Dropdown } from '@/components/Dropdown';
  */
 export default function Home({ products }: { products: IProduct[] }) {
   const [categoryFilter, setCategoryFilter] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(products);
   const categories = Array.from(new Set(products.map(product => product.category)))
 
-  const fetchProducts = async (category: string) => { 
+  const fetchProducts = async (category: string, sort: string) => { 
     try {
       const params = new URLSearchParams();
       if (category) params.set('category', category);
+      if (sort) params.set('sort', sort);
 
       const res = await fetch(`/api/products?${params.toString()}`);
         
@@ -35,8 +37,8 @@ export default function Home({ products }: { products: IProduct[] }) {
   };
   
   useEffect(() => {
-    fetchProducts(categoryFilter)
-  }, [categoryFilter, products])
+    fetchProducts(categoryFilter, sortOrder);
+  }, [categoryFilter, sortOrder, products])
 
   return (
     <div className="p-8">
@@ -51,6 +53,18 @@ export default function Home({ products }: { products: IProduct[] }) {
             options={[
                 { value: '', label: 'All' },
                 ...categories.map(category => ({ value: category, label: category }))
+            ]}
+        />
+
+        {/* Sort price dropdown */}
+        <Dropdown
+            label="Sort Order"
+            value={sortOrder}
+            onChange={setSortOrder}
+            options={[
+                { value: '', label: 'Sort By Price' },
+                { value: 'asc', label: 'Price: Low to High' },
+                { value: 'desc', label: 'Price: High to Low' }
             ]}
         />
 
