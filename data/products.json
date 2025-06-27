@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "Wireless Headphones",
+    "category": "Electronics",
+    "price": 199.99,
+    "description": "High-quality wireless headphones with noise cancellation and long-lasting battery.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Wireless+Headphones",
+    "sku": "WH-1000XM4",
+    "available": true
+  },
+  {
+    "id": "2",
+    "name": "Smartwatch",
+    "category": "Electronics",
+    "price": 249.00,
+    "description": "Stay connected with this sleek and feature-rich smartwatch. Tracks fitness, heart rate, and notifications.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Smartwatch",
+    "sku": "SW-500",
+    "available": true
+  },
+  {
+    "id": "3",
+    "name": "Classic T-Shirt",
+    "category": "Clothing",
+    "price": 29.50,
+    "description": "Comfortable cotton t-shirt, perfect for everyday wear. Available in various colors.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Classic+T-Shirt",
+    "sku": "TS-CLASSIC",
+    "available": false
+  },
+  {
+    "id": "4",
+    "name": "Fiction Novel",
+    "category": "Books",
+    "price": 15.99,
+    "description": "An engaging tale of adventure and mystery. A must-read for book lovers.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Fiction+Novel",
+    "available": true
+  },
+  {
+    "id": "5",
+    "name": "Portable Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 75.00,
+    "description": "Compact and powerful speaker with rich sound and long battery life. Perfect for travel.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Bluetooth+Speaker",
+    "sku": "SP-PORT-01",
+    "available": true
+  },
+  {
+    "id": "6",
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "price": 40.00,
+    "description": "Ergonomic wireless mouse with adjustable DPI and long battery life.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Wireless+Mouse",
+    "sku": "WM-2025",
+    "available": false
+  },
+  {
+    "id": "7",
+    "name": "Leather Wallet",
+    "category": "Accessories",
+    "price": 55.00,
+    "description": "Genuine leather wallet with multiple compartments and RFID protection.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Leather+Wallet",
+    "sku": "LW-100",
+    "available": true
+  },
+  {
+    "id": "8",
+    "name": "Desk Lamp",
+    "category": "Home & Office",
+    "price": 35.99,
+    "description": "Adjustable LED desk lamp with touch controls and multiple brightness levels.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Desk+Lamp",
+    "available": true
+  },
+  {
+    "id": "9",
+    "name": "Running Shoes",
+    "category": "Footwear",
+    "price": 120.00,
+    "description": "Lightweight running shoes designed for comfort and performance.",
+    "imageUrl": "https://via.placeholder.com/400x300?text=Running+Shoes",
+    "sku": "RS-900",
+    "available": false
+  }
+]
