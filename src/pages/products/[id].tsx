@@ -4,7 +4,8 @@ import Link from 'next/link';
 import IProduct from '@/interfaces/IProduct';
 import { getProductsFromAPI } from '@/lib/load-products';
 import ProductCardDetail from '@/components/ProductCardDetail';
-
+import { useCartStore } from '@/store/cartStore';
+import Button from '@/components/Button';
 
 /**
  * ProductDetail Component
@@ -32,6 +33,12 @@ import ProductCardDetail from '@/components/ProductCardDetail';
  * @returns {JSX.Element} The rendered product detail page.
  */
 export default function ProductDetail({ product }: { product: IProduct }) {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const handleAddToCart = () => {
+    addToCart(product.id.toString());
+  };
+
   return (
     <main className="flex flex-col items-start pt-24 px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96 overflow-hidden">
 
@@ -44,6 +51,14 @@ export default function ProductDetail({ product }: { product: IProduct }) {
 
       <div className="my-14 lg:my-32 font-light w-full text-black dark:text-white">
         <ProductCardDetail product={product} />
+        
+        {/* Add to Cart Button */}
+        <Button
+          onClick={handleAddToCart}
+          productName={product.name}
+          label="Add to Cart"
+        />
+        
       </div>
     </main>
   );
