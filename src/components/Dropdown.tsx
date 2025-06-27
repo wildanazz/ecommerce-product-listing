@@ -21,7 +21,7 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
   return (
     <select
       aria-label={label}
-      className="border px-3 py-2 rounded"
+      className="border px-3 py-2 rounded text-black"
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
