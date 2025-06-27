@@ -25,11 +25,9 @@ export function ProductCard({ product }: { product: IProduct }) {
             className="rounded"
           />
         </div>
-        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-        <p className="text-sm text-gray-600 mb-2">{product.description}</p>
-        <p className="text-sm">
-          <strong>Price:</strong> ${product.price}
-        </p>
+        <h3 className="text-xl font-semibold mb-2 text-black">{product.name}</h3>
+        <p className="text-sm mb-2 text-black">{product.description}</p>
+        <p className="text-sm text-green-700">${product.price.toFixed(2)}</p>
       </a>
     </Link>
   );
