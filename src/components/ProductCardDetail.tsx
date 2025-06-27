@@ -2,6 +2,23 @@ import Image from 'next/image';
 
 import IProduct from '@/interfaces/IProduct';
 
+/**
+ * ProductCardDetail Component
+ * 
+ * Displays detailed information for a single product, including an image,
+ * name, description, price, SKU, and availability status.
+ * 
+ * Features:
+ * - Responsive two-column grid layout (image + info).
+ * - Product image optimized with Next.js Image component.
+ * - Price formatted to two decimal places.
+ * - Conditional styling for availability (in stock / out of stock).
+ * 
+ * @param {Object} props - Component props.
+ * @param {IProduct} props.product - Product data to display.
+ * 
+ * @returns {JSX.Element} The product detail card UI.
+ */
 export default function ProductCardDetail({ product }: { product: IProduct }) {
   return (
     <div className="grid md:grid-cols-2 gap-10 max-w-5xl w-full">
