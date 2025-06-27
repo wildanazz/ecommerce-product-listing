@@ -121,6 +121,7 @@ export default function Home({ products }: { products: IProduct[] }) {
               ))}
           </div>
       )}
+
     </div>
   )
 }
