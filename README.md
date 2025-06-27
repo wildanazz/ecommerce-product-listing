@@ -1,40 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# E-commerce Product Listing (Next.js)
+
+A simple modern e-commerce frontend built using **Next.js**, featuring product listing, detail pages, filtering, and sorting functionality. This project demonstrates server-side rendering (SSR), Incremental static regeneration (ISR), component-based architecture, and clean design patterns.
+
+## Features
+
+- Product listing with filters and sorting (price and category)
+- Product detail pages with dynamic routing
+- SSR and static generation where appropriate
+- Client-side cart (in-memory)
+- Responsive design
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/wildanazz/ecommerce-product-listing.git
+cd ecommerce-product-listing
+npm install
+```
+
+### Running the Project Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your browser and go to [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Project Structure & Design Decisions
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```bash
+.
+├── data/                 # Static/mock data used for local development
+│   └── products.json     # Example mock products
+├── public/               # Static assets (images, fonts, etc.)
+├── src/                  # Application source code
+│   ├── components/       # Reusable UI components (Card, Dropdown, etc.)
+│   ├── pages/            # Next.js routing pages
+│   │   ├── index.tsx     # Product listing page with filters/sorting
+│   │   └── product/
+│   │       └── [id].tsx  # Dynamic product detail page
+│   ├── styles/           # CSS modules and global styles
+│   ├── lib/              # Helper functions and data fetching logic
+│   ├── interfaces/       # TypeScript interfaces
+│   └── store/            # Global state management
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Key Design Considerations
 
-## Learn More
+- **Modular Components**: Each UI element (Card, Filter, Sort dropdown) is split into its own component to promote reusability and separation of concerns.
+- **Modern Next.js Features**: Uses SSR (getServerSideProps) for dynamic product listing based on query params (filters, sort), and static generation (getStaticProps, getStaticPaths) for product detail pages to optimize performance and SEO.
+- **Local JSON Data**: Products are loaded from local JSON data instead of relying on an external API, ensuring better control and zero network dependencies.
+- **TypeScript**: Enforces type safety and improves code maintainability.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Data Fetching Strategy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Listing Page (`pages/index.tsx`)
+- **getServerSideProps** is used to ensure filters and sorting reflect the most recent server-side results.
+- This is useful for SEO and SSR as filters affect the URL and content significantly.
 
-## Deploy on Vercel
+### Product Detail Page (`pages/product/[id].tsx`)
+- **getStaticProps** with `getStaticPaths` is used because product details change infrequently.
+- This optimizes performance and reduces server load by generating static pages at build time.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Justification**:  
+The listing page depends on query parameters (filters/sorting), which makes SSR the better fit. The detail page can be pre-rendered statically since it's less dynamic and improves load speed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---
+
+## Assumptions
+
+### Assumptions
+
+- The product catalog is relatively small and static.
+- Users are not required to log in.
+- The cart is a simple counter.
+
+---
+
+## Future Improvements
+
+- Integrate user **authentication** and **checkout** flow
+- Implement **pagination** for large product sets
+- Refactor page metadata using a reusable SEO component with next/head
+
