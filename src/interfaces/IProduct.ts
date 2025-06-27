@@ -4,5 +4,7 @@ export default interface IProduct {
     category: string, 
     price: number, 
     description: string, 
-    imageUrl: string
+    imageUrl: string, 
+    sku?: string; 
+    available?: boolean;
 }
