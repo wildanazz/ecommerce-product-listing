@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { ProductCard } from "@/components/ProductCard";
 import { Dropdown } from '@/components/Dropdown';
+import { getProductsFromAPI } from "@/lib/load-products";
 
 /**
  * Home Component
@@ -125,9 +126,6 @@ export default function Home({ products }: { products: IProduct[] }) {
 }
 
 export async function getServerSideProps() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/products`);
-  const products: IProduct[] = res.ok ? await res.json() : [];
-  
+  const products = await getProductsFromAPI()
   return { props: { products } };
 }
